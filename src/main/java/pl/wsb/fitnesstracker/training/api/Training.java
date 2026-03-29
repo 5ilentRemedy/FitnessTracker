@@ -1,29 +1,23 @@
 package pl.wsb.fitnesstracker.training.api;
 
+import lombok.AccessLevel;
 import lombok.Getter;
-import pl.wsb.fitnesstracker.user.api.User;
-
-import java.time.LocalDateTime;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import jakarta.persistence.*;
+import pl.wsb.fitnesstracker.training.internal.ActivityType;
+import pl.wsb.fitnesstracker.user.api.User;
 
+import java.util.Date;
+
+import static java.time.LocalDate.now;
+@Entity
+@Table(name = "Trainings")
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
 public class Training {
-/*
-    private Long id;
-
-    private User user;
-
-    private Date startTime;
-
-    private Date endTime;
-
-    private ActivityType activityType;
-
-    private double distance;
-
-    private double averageSpeed;
-*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,25 +28,25 @@ public class Training {
     private User user;
 
     @Column(name = "startTime", nullable = false)
-    private LocalDateTime startTime;
+    private Date startTime;
 
-    @Column(name = "endTime")
-    private LocalDateTime endTime;
+    @Column(name = "endTime", nullable = false)
+    private Date endTime;
 
-    @Column(name = "activityType")
-    private String activityType;
+    @Column(name = "activityType", nullable = false)
+    private ActivityType activityType;
 
-    @Column(name = "distance")
+    @Column(name = "distance", nullable = true)
     private double distance;
 
-    @Column(name = "averageSpeed")
+    @Column(name = "averageSpeed",nullable = true)
     private double averageSpeed;
 
     public Training(
             final User user,
-            final LocalDateTime startTime,
-            final LocalDateTime endTime,
-            final String activityType,
+            final Date startTime,
+            final Date endTime,
+            final ActivityType activityType,
             final double distance,
             final double averageSpeed) {
         this.user = user;

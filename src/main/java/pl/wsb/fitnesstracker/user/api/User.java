@@ -11,7 +11,7 @@ import pl.wsb.fitnesstracker.statistics.api.Statistics;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "usersss")
+@Table(name = "Users")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
@@ -40,7 +40,7 @@ public class User {
     public User(
             final String firstName,
             final String lastName,
-            final LocalDate birthdate,
+            final LocalDate birthday,
             final String email) {
 
         this.firstName = firstName;
