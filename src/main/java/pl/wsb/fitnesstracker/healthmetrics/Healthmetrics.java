@@ -41,7 +41,8 @@ public class Healthmetrics {
             String date,
             float weight,
             float height,
-            float heartRate) {
+            float heartRate)
+    {
         this.userId = userId;
         this.date = date;
         this.weight = weight;

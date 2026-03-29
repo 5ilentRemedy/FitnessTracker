@@ -18,14 +18,23 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Nullable
     private Long id;
 
-    @Column(name = "birthdate", nullable = false)
-    private LocalDate birthdate;
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "lastName", nullable = false)
+    private String lastName;
+
+    @Column(name = "birthday", nullable = false)
+    private LocalDate birthday;
+
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "statistics_id", referencedColumnName = "id")
+    private Statistics statistics;
 
     public User(
             final String firstName,
@@ -33,9 +42,15 @@ public class User {
             final LocalDate birthdate,
             final String email) {
 
-        this.birthdate = birthdate;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
         this.email = email;
     }
+
+
+
+
 
 }
 
