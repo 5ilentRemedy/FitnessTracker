@@ -6,9 +6,9 @@ permissions:
   security-events: write
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "md_lab03" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "md_lab03" ]
 
 jobs:
   build:
