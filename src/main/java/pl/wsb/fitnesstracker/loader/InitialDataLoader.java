@@ -26,7 +26,8 @@ import static java.util.Objects.isNull;
  * for the manual testing purposes. Loader is triggered by {@link ContextRefreshedEvent } event
  */
 @Component
-@Profile("loadInitialData")
+//zmiana nazwy zignoruje ładowanie danych z InitialDataLoader.java - wykorzystujemy data.sql
+@Profile("disabledinitialload")
 @Slf4j
 @ToString
 @RequiredArgsConstructor
