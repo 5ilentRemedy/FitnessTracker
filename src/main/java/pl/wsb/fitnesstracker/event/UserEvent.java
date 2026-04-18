@@ -3,8 +3,9 @@ package pl.wsb.fitnesstracker.event;
 import jakarta.persistence.*;
 import lombok.*;
 import pl.wsb.fitnesstracker.user.api.User;
+
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "user_event")
@@ -26,6 +27,17 @@ public class UserEvent implements Serializable {
     private Event event;
 
     @Column(name = "registration_date", nullable = false)
-    private LocalDateTime registrationDate;
+    private LocalDate registrationDate;
 
+    public UserEvent(User user, Event event, LocalDate registrationDate) {
+        this.user = user;
+        this.event = event;
+        this.registrationDate = registrationDate;
+    }
+
+    public UserEvent(User user, Event event) {
+        this.user = user;
+        this.event = event;
+        this.registrationDate = LocalDate.now(); // domyślna data rejestracji
+    }
 }

@@ -2,8 +2,9 @@ package pl.wsb.fitnesstracker.event;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "event")
@@ -20,9 +21,15 @@ public class Event implements Serializable {
     private String name;
 
     @Column(name = "start_date", nullable = false)
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @Column(nullable = false)
     private String location;
 
+
+    public Event(String name, LocalDate startDate, String location) {
+        this.name = name;
+        this.startDate = startDate;
+        this.location = location;
+    }
 }
