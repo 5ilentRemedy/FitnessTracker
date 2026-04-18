@@ -1,5 +1,28 @@
 package pl.wsb.fitnesstracker.event;
 
-// TODO: Define the Event entity with appropriate fields and annotations
-public class Event {
+import jakarta.persistence.*;
+import lombok.*;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "event")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+public class Event implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(name = "start_date", nullable = false)
+    private LocalDateTime startDate;
+
+    @Column(nullable = false)
+    private String location;
+
 }
