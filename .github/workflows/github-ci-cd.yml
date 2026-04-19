@@ -90,7 +90,6 @@ jobs:
 
       - name: Build JAR
         run: mvn -B -DskipTests package --file pom.xml
-
       - name: Upload JAR artifact
         if: success()
         uses: actions/upload-artifact@v5
