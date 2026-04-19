@@ -21,11 +21,8 @@ public class WorkoutSession implements Serializable {
     @JoinColumn(name = "training_id", nullable = false)
     private Training training;
 
-    @Column(name = "start_time", nullable = false)
-    private LocalDateTime startTime;
-
-    @Column(name = "end_time", nullable = false)
-    private LocalDateTime endTime;
+    @Column(name = "timestamp", nullable = false)
+    private LocalDateTime timestamp;
 
     @Column(name = "start_latitude")
     private Double startLatitude;
