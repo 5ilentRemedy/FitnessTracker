@@ -37,9 +37,4 @@ public class UserEvent implements Serializable {
         this.registrationDate = registrationDate;
     }
 
-    public UserEvent(User user, Event event) {
-        this.user = user;
-        this.event = event;
-        this.registrationDate = LocalDate.now(); // domyślna data rejestracji
-    }
 }

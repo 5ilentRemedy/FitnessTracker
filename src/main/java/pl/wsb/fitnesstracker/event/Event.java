@@ -32,11 +32,12 @@ public class Event implements Serializable {
     @Column(nullable = false)
     private String location;
 
-    public Event(String name, LocalDateTime startDate, String location) {
+    public Event(String name, LocalDateTime startDate, LocalDateTime endDate, String location, String description) {
         this.name = name;
         this.description = name;
         this.startDate = startDate;
         this.endDate = LocalDateTime.now();
         this.location = location;
+        this.description = description;
     }
 }

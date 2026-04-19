@@ -5,7 +5,7 @@ import lombok.*;
 import pl.wsb.fitnesstracker.user.api.User;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "achievement")
@@ -22,7 +22,7 @@ public class Achievement implements Serializable {
     private String name;
 
     @Column(name = "earned_at", nullable = false)
-    private LocalDate earnedAt;
+    private LocalDateTime earnedat;
 
     @Column(name = "achievement_name", nullable = false)
     private String achievementName;
@@ -38,9 +38,9 @@ public class Achievement implements Serializable {
     private User user;
 
 
-    public Achievement(String name, LocalDate earnedAt, User user) {
+    public Achievement(String name, LocalDateTime earnedat, User user, String achievementName, String achievementDescription, String rarity) {
         this.name = name;
-        this.earnedAt = earnedAt;
+        this.earnedat = earnedat;
         this.achievementName = name;
         this.achievementDescription = name;
         this.rarity = name;
