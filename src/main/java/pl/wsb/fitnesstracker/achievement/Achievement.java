@@ -24,6 +24,15 @@ public class Achievement implements Serializable {
     @Column(name = "earned_at", nullable = false)
     private LocalDate earnedAt;
 
+    @Column(name = "achievement_name", nullable = false)
+    private String achievementName;
+
+    @Column(name = "achievement_description",nullable = false)
+    private String achievementDescription;
+
+    @Column(name = "rarity",nullable = false)
+    private String rarity;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -32,6 +41,9 @@ public class Achievement implements Serializable {
     public Achievement(String name, LocalDate earnedAt, User user) {
         this.name = name;
         this.earnedAt = earnedAt;
+        this.achievementName = name;
+        this.achievementDescription = name;
+        this.rarity = name;
         this.user = user;
     }
 }

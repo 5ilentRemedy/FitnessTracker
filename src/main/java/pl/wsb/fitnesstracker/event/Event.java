@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "event")
@@ -17,19 +17,26 @@ public class Event implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "name",nullable = false)
     private String name;
 
+    @Column(name = "description",nullable = false)
+    private String description;
 
     @Column(name = "start_date", nullable = false)
-    private LocalDate startDate;
+    private LocalDateTime startDate;
+
+    @Column(name = "end_date",nullable = false)
+    private LocalDateTime endDate;
 
     @Column(nullable = false)
     private String location;
 
-    public Event(String name, LocalDate startDate, String location) {
+    public Event(String name, LocalDateTime startDate, String location) {
         this.name = name;
+        this.description = name;
         this.startDate = startDate;
+        this.endDate = LocalDateTime.now();
         this.location = location;
     }
 }
