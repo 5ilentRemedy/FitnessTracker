@@ -7,6 +7,7 @@ import pl.wsb.fitnesstracker.user.api.User;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+
 @Entity
 @Table(name = "achievement")
 @Getter
@@ -22,28 +23,16 @@ public class Achievement implements Serializable {
     private String name;
 
     @Column(name = "earned_at", nullable = false)
-    private LocalDateTime earnedat;
-
-    @Column(name = "achievement_name", nullable = false)
-    private String achievementName;
-
-    @Column(name = "achievement_description",nullable = false)
-    private String achievementDescription;
-
-    @Column(name = "rarity",nullable = false)
-    private String rarity;
+    private LocalDateTime earnedAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-
-    public Achievement(String name, LocalDateTime earnedat, User user, String achievementName, String achievementDescription, String rarity) {
+    public Achievement(String name, LocalDateTime earnedAt, User user) {
         this.name = name;
-        this.earnedat = earnedat;
-        this.achievementName = name;
-        this.achievementDescription = name;
-        this.rarity = name;
+        this.earnedAt = earnedAt;
         this.user = user;
     }
+
 }
