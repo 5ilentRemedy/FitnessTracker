@@ -8,7 +8,7 @@ import pl.wsb.fitnesstracker.training.api.TrainingProvider;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor // Automatycznie wygeneruje konstruktor dla pól final
+@RequiredArgsConstructor
 public class TrainingServiceImpl implements TrainingProvider {
 
     private final TrainingRepository trainingRepository;
