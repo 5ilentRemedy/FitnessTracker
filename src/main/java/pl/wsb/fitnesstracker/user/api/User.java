@@ -33,6 +33,8 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+
+
     public User(
             final String firstName,
             final String lastName,
@@ -43,5 +45,6 @@ public class User {
         this.birthdate = birthdate;
         this.email = email;
     }
+
 
 }
