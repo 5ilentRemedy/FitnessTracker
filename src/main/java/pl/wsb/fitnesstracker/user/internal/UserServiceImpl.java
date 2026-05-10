@@ -41,4 +41,33 @@ public class UserServiceImpl implements UserService, UserProvider {
         return userRepository.findAll();
     }
 
+
+    @Override
+    public void deleteUser(Long userId) {
+        log.info("Deleting user with ID {}", userId);
+        userRepository.deleteById(userId);
+    }
+
+
+    public List<User> findUsersByEmail(String email) {
+        log.info("Searching for users with email containing {}", email);
+        return userRepository.findAll()
+                .stream()
+                .filter(user -> user.getEmail().toLowerCase().contains(email.toLowerCase()))
+                .toList();
+    }
+
+    @Override
+    public User updateUser(Long userId, User userRequest) {
+        log.info("Updating user with ID {}", userId);
+        return userRepository.findById(userId)
+                .map(user -> {
+                    user.setFirstName(userRequest.getFirstName());
+                    user.setLastName(userRequest.getLastName());
+                    user.setEmail(userRequest.getEmail());
+                    user.setBirthdate(userRequest.getBirthdate());
+                    return userRepository.save(user);
+                })
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    }
 }
