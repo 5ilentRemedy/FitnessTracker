@@ -52,19 +52,5 @@ public class Achievement implements Serializable {
         this.achievementDescription = description;
         this.rarity = rarity;
     }
-    public LocalDateTime getEarnedAt() {
-        return earnedAt;
-    }
 
-    public String getAchievementName() {
-        return achievementName;
-    }
-
-    public String getAchievementDescription() {
-        return achievementDescription;
-    }
-
-    public String getRarity() {
-        return rarity;
-    }
 }
