@@ -5,8 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.wsb.fitnesstracker.user.api.User;
 import pl.wsb.fitnesstracker.user.api.UserDto;
+import pl.wsb.fitnesstracker.user.api.UserEmailDto;
 import pl.wsb.fitnesstracker.user.api.UserSimpleDto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -20,9 +22,7 @@ class UserController {
     private final UserServiceImpl userService;
     private final UserMapper userMapper;
 
-    /**
-     * Listuje wszystkich użytkowników (tylko ID i nazwa).
-     */
+
     @GetMapping
     public List<UserSimpleDto> getAllUsers() {
         return userService.findAllUsers()
@@ -31,9 +31,7 @@ class UserController {
                 .toList();
     }
 
-    /**
-     * Pobiera szczegółowe informacje o wybranym użytkowniku po ID.
-     */
+
     @GetMapping("/{id}")
     public UserDto getUserById(@PathVariable Long id) {
         return userService.getUser(id)
@@ -41,9 +39,7 @@ class UserController {
                 .orElseThrow(() -> new IllegalArgumentException("User with ID " + id + " not found"));
     }
 
-    /**
-     * Tworzy nowego użytkownika.
-     */
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto addUser(@RequestBody UserDto userDto) {
@@ -56,12 +52,32 @@ class UserController {
         return userMapper.toUserDto(userService.createUser(user));
     }
 
-    /**
-     * Usuwa użytkownika.
-     */
+    @GetMapping("/simple")
+    public List<UserSimpleDto> getAllSimpleUsers() {
+        return userService.findAllUsers().stream()
+                .map(userMapper::toSummaryDto)
+                .toList();
+    }
+
+    @GetMapping("/email")
+    public List<UserEmailDto> getUserByEmail(@RequestParam String email) {
+        return userService.findUsersByEmail(email).stream()
+                .map(userMapper::toEmailDto)
+                .toList();
+    }
+
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
+    }
+
+    @GetMapping("/older/{date}")
+    public List<UserDto> getUsersOlderThan(@PathVariable LocalDate date) {
+        return userService.findUsersOlderThan(date)
+                .stream()
+                .map(userMapper::toUserDto)
+                .toList();
     }
 }
