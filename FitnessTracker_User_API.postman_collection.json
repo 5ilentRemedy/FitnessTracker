@@ -1,0 +1,255 @@
+{
+  "info": {
+    "_postman_id": "fitness-tracker-user-api-2026",
+    "name": "FitnessTracker - User API",
+    "description": "CRUD API for User Management - LAB04 Spring Boot",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "1"
+  },
+  "item": [
+    {
+      "name": "User Management",
+      "item": [
+        {
+          "name": "1. Get All Users (Full Details)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "users"
+              ]
+            },
+            "description": "Retrieve all users with full details (firstName, lastName, birthdate, email, id)"
+          },
+          "response": []
+        },
+        {
+          "name": "2. Get All Users (Simple List)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/simple",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "simple"
+              ]
+            },
+            "description": "Retrieve all users with basic information (firstName, lastName only)"
+          },
+          "response": []
+        },
+        {
+          "name": "3. Get User By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/{{userId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "{{userId}}"
+              ]
+            },
+            "description": "Retrieve specific user details by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "4. Search Users By Email (Fragment)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/email?email={{userEmail}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "email"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "{{userEmail}}"
+                }
+              ]
+            },
+            "description": "Search users by email fragment (case-insensitive). Returns id and email only"
+          },
+          "response": []
+        },
+        {
+          "name": "5. Get Users Older Than Date",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/older/2000-01-01",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "older",
+                "2000-01-01"
+              ]
+            },
+            "description": "Retrieve all users born before the specified date (older than)"
+          },
+          "response": []
+        },
+        {
+          "name": "6. Create New User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"birthdate\": \"1990-05-15\",\n  \"email\": \"john.doe@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/users",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "users"
+              ]
+            },
+            "description": "Create a new user (returns 201 Created)"
+          },
+          "response": []
+        },
+        {
+          "name": "7. Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Smith\",\n  \"birthdate\": \"1992-03-20\",\n  \"email\": \"jane.smith@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/users/{{userId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "{{userId}}"
+              ]
+            },
+            "description": "Update an existing user by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "8. Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/{{userId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "{{userId}}"
+              ]
+            },
+            "description": "Delete a user by ID (returns 204 No Content)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Complete CRUD operations for User management"
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "userEmail",
+      "value": "example",
+      "type": "string"
+    }
+  ]
+}
